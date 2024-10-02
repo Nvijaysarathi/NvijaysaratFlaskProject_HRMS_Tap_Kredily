@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #e9ecef; /* Light gray background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Employee Management System</h1>
+
+        <div class="mb-3">
+            <a href="{{ url_for('add_employee_form') }}" class="btn btn-primary">Add Employee</a>
+            <a href="{{ url_for('attendance_report') }}" class="btn btn-secondary">View Attendance Report</a>
+        </div>
+
+        <h2>Employees List</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Date of Joining</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.designation }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.date_of_joining }}</td>
+                    <td>
+                        <a href="{{ url_for('mark_attendance_form', employee_id=employee.id) }}" class="btn btn-success">Mark Attendance</a>
+                        <a href="{{ url_for('employee_detail', employee_id=employee.id) }}" class="btn btn-info">Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-light mt-3">Back to Welcome page</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance for {{ employee.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        input[type="date"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensures padding is included in width */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007BFF; /* Link color */
+            text-decoration: none;
+            padding: 10px 15px; /* Add padding for better click area */
+            border: 1px solid #007BFF; /* Match border with link color */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+        }
+
+        a:hover {
+            background-color: #007BFF; /* Change background color on hover */
+            color: white; /* Change text color on hover */
+            text-decoration: none; /* Remove underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Attendance for {{ employee.name }}</h1>
+        <form action="{{ url_for('mark_attendance', employee_id=employee.id) }}" method="POST">
+            <label for="status">Attendance Status:</label>
+            <select name="status" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Leave">Leave</option>
+            </select>
+            
+            <label for="attendance_date">Date:</label>
+            <input type="date" name="attendance_date" required>
+            
+            <button type="submit">Mark Attendance</button>
+        </form>
+        
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

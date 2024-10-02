@@ -1,0 +1,100 @@
+<!-- templates/attendance_report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Merges cell borders */
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        }
+
+        th, td {
+            padding: 12px; /* Space within table cells */
+            text-align: left; /* Align text to the left */
+            border: 1px solid #ccc; /* Border around cells */
+        }
+
+        th {
+            background-color: #4CAF50; /* Header background color */
+            color: white; /* Header text color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Zebra striping for rows */
+        }
+
+        tr:hover {
+            background-color: #e8f5e9; /* Highlight row on hover */
+        }
+
+        /* Style for back to home link */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007BFF;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Leave</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance_summary %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.department }}</td>
+                <td>{{ record.present_count }}</td>
+                <td>{{ record.absent_count }}</td>
+                <td>{{ record.leave_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+    
+</body>
+</html>
+
